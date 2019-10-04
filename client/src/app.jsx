@@ -10,9 +10,11 @@ class CowList extends React.Component {
     this.state = {
       cows: [],
       newCowName: '',
-      newCowDesript: ''
-     
+      newCowDesript: '',
+      showcaseCowId: '',
+      showcaseCowDescript: ''
     }
+    this.setShowcaseCow = this.setShowcaseCow.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +23,7 @@ class CowList extends React.Component {
       url: '/api/cows',
       responseType: 'application/json'
     })
-    
+
     // .then(res => res.json(res.data))
 
     .then(res => {
@@ -53,21 +55,24 @@ class CowList extends React.Component {
   }
   /*display cows in showcase
       */
-  handleClick(e) {
-    this.setState({
-    })
+
+  setShowcaseCow(e, id, descript) {
+    console.log(e, id, descript);
+    this.setState({showcaseCowId: id})
+    this.setState({showcaseCowDescript: descript})
   }
 
   render() {
     return (
       <div>
         <h1 style={{textAlign: "center"}}>Cow List</h1>
-        <Showcase />
+        <Showcase cowId={this.state.showcaseCowId} cowDescript={this.state.showcaseCowDescript}/>
         <AddCow  handleSubmit={this.handleSubmit} />
-        <Herd cows={this.state.cows}/>
+        <Herd setShowcaseCow={this.setShowcaseCow} cows={this.state.cows} />
       </div>
     )
   }
 }
+
 
 export default CowList;

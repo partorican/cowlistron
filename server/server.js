@@ -2,11 +2,11 @@ const express = require('express');
 var React = require('react');
 var $ = require("jquery");
 var Cors = require('cors');
-var Mysql = require('mysql');
-var Parser = require('body-parser');
+var mysql = require('mysql');
+var parser = require('body-parser');
 
 //set  up database
-let connection = mysql.createConnection( {
+const connection = mysql.createConnection( {
   user: 'root',
   password: 'rcabrera',
   database: 'cows'
